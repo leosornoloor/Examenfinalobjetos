@@ -42,5 +42,15 @@ public class PacienteController {
             return new ResponseEntity<>(new ApiResponseDTO<>(false, "Error al actualizar el paciente: " + e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
+    
+    @PostMapping("/registro")
+    public ResponseEntity<?> registrarPaciente(@Valid @RequestBody PacienteDTO dto) {
+        try {
+            PacienteDTO creado = entityService.create(dto);
+            return new ResponseEntity<>(new ApiResponseDTO<>(true, creado), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponseDTO<>(false, "Error al registrar paciente: " + e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

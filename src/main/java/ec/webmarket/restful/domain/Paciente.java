@@ -35,4 +35,9 @@ public class Paciente {
     
     @Column(nullable = true)
     private String email;
+    
+    @OneToOne
+    @JoinColumn(name = "usuario_id", unique = true)
+    private Usuario usuario;
+
 }

@@ -24,4 +24,9 @@ public class Odontologo {
     
     @OneToMany(mappedBy = "odontologo")
     private List<Cita> citas;
+    
+    @OneToOne
+    @JoinColumn(name = "usuario_id", unique = true)
+    private Usuario usuario;
+
 }

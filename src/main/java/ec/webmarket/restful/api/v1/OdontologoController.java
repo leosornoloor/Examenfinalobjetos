@@ -37,4 +37,9 @@ public class OdontologoController {
     public ResponseEntity<List<CitaDTO>> getCitasAsignadas(@PathVariable("id") Long id) {
         return ResponseEntity.ok(citaService.findByOdontologo(id));
     }
+    
+    @PostMapping("/registro")
+    public ResponseEntity<OdontologoDTO> registrarOdontologo(@RequestBody OdontologoDTO dto) {
+        return ResponseEntity.ok(odontologoService.create(dto));
+    }
 }
