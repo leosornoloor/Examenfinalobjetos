@@ -29,8 +29,11 @@ public class UsuarioService {
 
     public UsuarioDTO autenticarUsuario(String nombreUsuario, String clave) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByNombreUsuario(nombreUsuario);
-        if (usuarioOpt.isPresent() && usuarioOpt.get().getClave().equals(clave)) {
-            return modelMapper.map(usuarioOpt.get(), UsuarioDTO.class);
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            if (usuario.getClave().equals(clave)) {  // Verifica que las claves coincidan
+                return modelMapper.map(usuario, UsuarioDTO.class);
+            }
         }
         throw new IllegalArgumentException("Credenciales inválidas.");
     }
