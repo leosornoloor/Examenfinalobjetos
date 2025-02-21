@@ -20,8 +20,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UsuarioDTO> autenticarUsuario(@RequestParam String nombreUsuario, @RequestParam String clave) {
-        return ResponseEntity.ok(usuarioService.autenticarUsuario(nombreUsuario, clave));
+    public ResponseEntity<UsuarioDTO> autenticarUsuario(@RequestBody UsuarioDTO dto) {
+        return ResponseEntity.ok(usuarioService.autenticarUsuario(dto.getNombreUsuario(), dto.getClave()));
     }
 
     @PutMapping("/{id}/clave")
